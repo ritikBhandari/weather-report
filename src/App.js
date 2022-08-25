@@ -1,5 +1,6 @@
 import './App.css';
 import React, {useState} from 'react';
+const fetch = require('node-fetch');
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
 async function submitFun(evt){
     if(evt.key === "Enter"){
 
-      const response = await fetch(`http://localhost:8000/getWeather`, {
+      const response = await fetch(`https://demo-server-ds.herokuapp.com/getWeather`, {
         method: 'POST',
 
         body: JSON.stringify({
@@ -16,7 +17,9 @@ async function submitFun(evt){
         }),
 
         headers: {
-          "Content-type":  "application/json; charset=UTF-8"
+          "Content-type":  "application/json; charset=UTF-8",
+          "Access-Control-Allow-Origin": "*"
+           
         }
       })
 
